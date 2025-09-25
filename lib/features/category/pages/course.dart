@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_3/features/auth/pages/login.dart';
 import 'package:flutter_application_3/features/auth/provider/auth_provider.dart';
+import 'package:flutter_application_3/features/category/pages/enroll.dart';
 import 'package:flutter_application_3/features/category/provider/category_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -142,87 +143,105 @@ class _CourseState extends State<Course> {
                       itemBuilder: (context, index) {
                         final categories =
                             categoryProvider.categoriesList[index];
-                        return Row(
-                          children: [
-                            Container(
-                              width: 100,
-                              height: 100,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Colors.black),
-                            ),
-                            SizedBox(
-                              width: 16,
-                            ),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        categories["category"],
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            color: Colors.orange[800]),
-                                      ),
-                                      Spacer(),
-                                      Icon(
-                                        Icons.bookmark_remove_rounded,
-                                        color: Colors.green,
-                                      )
-                                    ],
-                                  ),
-                                  SizedBox(height: 4),
-                                  Text(
-                                    categories["title"],
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  SizedBox(height: 6),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "7058/-",
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w800,
-                                            color: Colors.blue),
-                                      ),
-                                      SizedBox(height: 4),
-                                      Row(
-                                        children: [
-                                          Icon(Icons.star,
-                                              color: Colors.amber, size: 16),
-                                          SizedBox(width: 4),
-                                          Text(
-                                            "4.2",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                          SizedBox(width: 12),
-                                          Text(
-                                            "|",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                          SizedBox(width: 16),
-                                          Text(
-                                            "7830 Std",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (_) => Enroll(
+                                          category: categories["category"],
+                                          rating: categories["rating"],
+                                          title: categories["title"],
+                                          classes: categories["classes"],
+                                          durationhours:
+                                              categories["durationHours"],
+                                          price: categories["price"],
+                                          tab: categories["tab"],
+                                          complains: categories["complains"],
+                                        )));
+                          },
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 100,
+                                height: 100,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: Colors.black),
                               ),
-                            ),
-                          ],
+                              SizedBox(
+                                width: 16,
+                              ),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Text(
+                                          categories["category"],
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.orange[800]),
+                                        ),
+                                        Spacer(),
+                                        Icon(
+                                          Icons.bookmark_remove_rounded,
+                                          color: Colors.green,
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(height: 4),
+                                    Text(
+                                      categories["title"],
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(height: 6),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "7058/-",
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w800,
+                                              color: Colors.blue),
+                                        ),
+                                        SizedBox(height: 4),
+                                        Row(
+                                          children: [
+                                            Icon(Icons.star,
+                                                color: Colors.amber, size: 16),
+                                            SizedBox(width: 4),
+                                            Text(
+                                              "4.2",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                            SizedBox(width: 12),
+                                            Text(
+                                              "|",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                            SizedBox(width: 16),
+                                            Text(
+                                              "7830 Std",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         );
                       }),
                 )

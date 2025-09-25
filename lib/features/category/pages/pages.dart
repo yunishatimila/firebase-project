@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_3/features/category/pages/forms.dart';
-import 'package:flutter_application_3/features/category/pages/mentors.dart';
+import 'package:flutter_application_3/features/category/pages/mentors_page.dart';
 
 class Pages extends StatefulWidget {
   const Pages({super.key});
@@ -69,7 +69,7 @@ class _PageState extends State<Pages> {
                   children: [
                     InkWell(
                       onTap: () => Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => Mentors())),
+                          MaterialPageRoute(builder: (_) => MentorsPage())),
                       child: Container(
                         height: 120,
                         width: 120,

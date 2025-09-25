@@ -1,7 +1,25 @@
 import 'package:flutter/material.dart';
 
 class Enroll extends StatefulWidget {
-  const Enroll({super.key});
+  String? category;
+  String? rating;
+  String? title;
+  String? classes;
+  String? durationhours;
+  String? price;
+  String? tab;
+  String? complains;
+
+  Enroll(
+      {this.category,
+      this.rating,
+      this.title,
+      this.classes,
+      this.durationhours,
+      this.price,
+      this.tab,
+      this.complains,
+      super.key});
 
   @override
   State<Enroll> createState() => _EnrollState();
@@ -44,7 +62,7 @@ class _EnrollState extends State<Enroll> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Graphic Design",
+                      widget.category ?? "",
                       style: TextStyle(color: Colors.orange, fontSize: 14),
                     ),
                     SizedBox(height: 4),

@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_3/features/category/pages/homepagee.dart';
-import 'package:flutter_application_3/features/category/pages/mentors.dart';
+import 'package:flutter_application_3/features/category/pages/mentors_page.dart';
 import 'package:flutter_application_3/features/category/pages/pages.dart';
 import 'package:flutter_application_3/features/profile/pages/Notice.dart';
 import 'package:flutter_application_3/features/category/pages/enroll.dart';
@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           home: Consumer<AuthProvider>(
               builder: (context, authProvider, child) =>
-                  authProvider.isLoggedIn ? Homepagee() : Login())),
+                  authProvider.isLoggedIn ? Course() : Login())),
     );
   }
 }
