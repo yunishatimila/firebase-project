@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_3/features/category/pages/category.dart';
 import 'package:flutter_application_3/features/category/pages/course.dart';
 import 'package:flutter_application_3/features/category/pages/enroll.dart';
-import 'package:flutter_application_3/features/category/pages/mentors.dart';
+import 'package:flutter_application_3/features/category/pages/mentors_page.dart';
 import 'package:flutter_application_3/features/category/provider/category_provider.dart';
 import 'package:flutter_application_3/features/profile/pages/Notice.dart';
 import 'package:provider/provider.dart';

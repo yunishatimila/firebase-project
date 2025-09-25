@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_3/features/category/pages/mentor.dart';
 import 'package:flutter_application_3/features/category/pages/pages.dart';
 import 'package:flutter_application_3/features/category/provider/category_provider.dart';
 import 'package:provider/provider.dart';
 
-class Mentors extends StatefulWidget {
-  const Mentors({super.key});
+class MentorsPage extends StatefulWidget {
+  const MentorsPage({super.key});
 
   @override
-  State<Mentors> createState() => _MentorsState();
+  State<MentorsPage> createState() => _MentorsPageState();
 }
 
-class _MentorsState extends State<Mentors> {
+class _MentorsPageState extends State<MentorsPage> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _ageController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -27,7 +28,7 @@ class _MentorsState extends State<Mentors> {
             SizedBox(
               width: 12,
             ),
-            Text("Add Mentors")
+            Text("Add MentorsPage")
           ],
         ),
       ),
@@ -144,14 +145,17 @@ class _MentorsState extends State<Mentors> {
                           padding: EdgeInsets.zero,
                           elevation: 4),
                       onPressed: () {
-                        provider.addMentor(
-                          _nameController.text.trim(),
-                          _ageController.text.trim(),
-                          _emailController.text.trim(),
-                          _phoneController.text.trim(),
-                          _specialController.text.trim(),
-                          _bioController.text.trim(),
+                        Mentors mentor = Mentors(
+                          name: _nameController.text.trim(),
+                          age: int.tryParse(_ageController.text.trim()),
+                          email: _emailController.text.trim(),
+                          number: int.tryParse(
+                            _phoneController.text.trim(),
+                          ),
+                          special: _specialController.text.trim(),
+                          bio: _bioController.text.trim(),
                         );
+                        provider.addMentor(mentor);
                       },
                       child: InkWell(
                         onTap: () => Navigator.push(context,

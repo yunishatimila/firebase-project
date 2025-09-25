@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_3/features/category/pages/mentor.dart';
 import 'package:flutter_application_3/features/core/utils.dart';
 import 'package:flutter_application_3/features/category/pages/course.dart';
 
@@ -49,20 +50,11 @@ class CategoryProvider with ChangeNotifier {
     }
   }
 
-  Future<void> addMentor(String name, String age, String email, String number,
-      String special, String bio) async {
+  Future<void> addMentor(Mentors mentor) async {
     handleLoading();
 
     try {
-      final data = {
-        "name": name,
-        "age": age,
-        "email": email,
-        "number": number,
-        "special": special,
-        "bio": bio
-      };
-      await _firebaseStore.collection("Mentors").add(data);
+      await _firebaseStore.collection("Mentors").add(mentor.toJson());
       handleSuccess();
     } catch (e) {
       handleError();
