@@ -1,21 +1,22 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_3/Notice.dart';
-import 'package:flutter_application_3/enroll.dart';
+import 'package:flutter_application_3/features/category/pages/homepagee.dart';
+import 'package:flutter_application_3/features/category/pages/mentors.dart';
+import 'package:flutter_application_3/features/category/pages/pages.dart';
+import 'package:flutter_application_3/features/profile/pages/Notice.dart';
+import 'package:flutter_application_3/features/category/pages/enroll.dart';
 import 'package:flutter_application_3/features/category/pages/bookmark.dart';
 import 'package:flutter_application_3/features/category/pages/category.dart';
-import 'package:flutter_application_3/courses.dart';
 import 'package:flutter_application_3/features/category/provider/category_provider.dart';
-import 'package:flutter_application_3/features/course.dart';
+import 'package:flutter_application_3/features/category/pages/course.dart';
 import 'package:flutter_application_3/firebase_options.dart';
 import 'package:flutter_application_3/features/category/pages/forms.dart';
-import 'package:flutter_application_3/features/category/pages/homepage.dart';
 import 'package:flutter_application_3/features/auth/pages/login.dart';
-import 'package:flutter_application_3/myprofile.dart';
-import 'package:flutter_application_3/profile.dart';
+import 'package:flutter_application_3/features/profile/pages/myprofile.dart';
+import 'package:flutter_application_3/features/profile/pages/profile.dart';
 import 'package:flutter_application_3/features/auth/provider/auth_provider.dart';
 import 'package:flutter_application_3/features/todo/provider/todoprovider.dart';
-import 'package:flutter_application_3/rating.dart';
+import 'package:flutter_application_3/features/profile/pages/rating.dart';
 import 'package:flutter_application_3/features/auth/pages/signup.dart';
 import 'package:flutter_application_3/features/todo/screens/todopage.dart';
 import 'package:provider/provider.dart';
@@ -40,7 +41,11 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => AuthProvider()),
         ChangeNotifierProvider(create: (context) => CategoryProvider()),
       ],
-      child: MaterialApp(debugShowCheckedModeBanner: false, home: Enroll()),
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: Consumer<AuthProvider>(
+              builder: (context, authProvider, child) =>
+                  authProvider.isLoggedIn ? Homepagee() : Login())),
     );
   }
 }

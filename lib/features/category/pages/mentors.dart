@@ -3,22 +3,20 @@ import 'package:flutter_application_3/features/category/pages/pages.dart';
 import 'package:flutter_application_3/features/category/provider/category_provider.dart';
 import 'package:provider/provider.dart';
 
-class Forms extends StatefulWidget {
-  const Forms({super.key});
+class Mentors extends StatefulWidget {
+  const Mentors({super.key});
 
   @override
-  State<Forms> createState() => _FormsState();
+  State<Mentors> createState() => _MentorsState();
 }
 
-class _FormsState extends State<Forms> {
-  final TextEditingController _category = TextEditingController();
-  final TextEditingController _rating = TextEditingController();
-  final TextEditingController _title = TextEditingController();
-  final TextEditingController _classes = TextEditingController();
-  final TextEditingController _durationHours = TextEditingController();
-  final TextEditingController _price = TextEditingController();
-  final TextEditingController _tab = TextEditingController();
-  final TextEditingController _complains = TextEditingController();
+class _MentorsState extends State<Mentors> {
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _ageController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _specialController = TextEditingController();
+  final TextEditingController _bioController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,23 +25,53 @@ class _FormsState extends State<Forms> {
           children: [
             Icon(Icons.arrow_back),
             SizedBox(
-              width: 8,
+              width: 12,
             ),
-            Text("Add Categories"),
+            Text("Add Mentors")
           ],
         ),
       ),
       backgroundColor: Colors.white,
-      body: Consumer<CategoryProvider>(
-        builder: (context, provider, child) {
-          return Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: SingleChildScrollView(
-              child: Column(
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Consumer<CategoryProvider>(
+              builder: (context, provider, child) => Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Category",
+                    "Mentor Name",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  TextFormField(
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(), hintText: "Name"),
+                    controller: _nameController,
+                  ),
+                  SizedBox(
+                    height: 28,
+                  ),
+                  Text(
+                    "Age",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  TextFormField(
+                    decoration: InputDecoration(
+                        border: OutlineInputBorder(), hintText: "18"),
+                    controller: _ageController,
+                  ),
+                  SizedBox(
+                    height: 28,
+                  ),
+                  Text(
+                    "Email",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                   ),
                   SizedBox(
@@ -52,14 +80,14 @@ class _FormsState extends State<Forms> {
                   TextFormField(
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        hintText: "Graphic Design"),
-                    controller: _category,
+                        hintText: "abc@gmail.com"),
+                    controller: _emailController,
                   ),
                   SizedBox(
                     height: 28,
                   ),
                   Text(
-                    "Rating",
+                    "Phone number",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                   ),
                   SizedBox(
@@ -67,14 +95,14 @@ class _FormsState extends State<Forms> {
                   ),
                   TextFormField(
                     decoration: InputDecoration(
-                        border: OutlineInputBorder(), hintText: "42"),
-                    controller: _rating,
+                        border: OutlineInputBorder(), hintText: "9841234567"),
+                    controller: _phoneController,
                   ),
                   SizedBox(
                     height: 28,
                   ),
                   Text(
-                    "Title",
+                    "Specialist",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                   ),
                   SizedBox(
@@ -82,30 +110,14 @@ class _FormsState extends State<Forms> {
                   ),
                   TextFormField(
                     decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: "Design Principle"),
-                    controller: _title,
+                        border: OutlineInputBorder(), hintText: "Flutter"),
+                    controller: _specialController,
                   ),
                   SizedBox(
                     height: 28,
                   ),
                   Text(
-                    "Classes",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-                  ),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(), hintText: "21"),
-                    controller: _classes,
-                  ),
-                  SizedBox(
-                    height: 28,
-                  ),
-                  Text(
-                    "Duration Hours",
+                    "Bio",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                   ),
                   SizedBox(
@@ -114,59 +126,11 @@ class _FormsState extends State<Forms> {
                   TextFormField(
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
-                        hintText: "Graphic Design"),
-                    controller: _durationHours,
+                        hintText: "Flutter developer"),
+                    controller: _bioController,
                   ),
                   SizedBox(
                     height: 28,
-                  ),
-                  Text(
-                    "Price",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-                  ),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(), hintText: "42"),
-                    controller: _price,
-                  ),
-                  SizedBox(
-                    height: 28,
-                  ),
-                  Text(
-                    "Tab",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-                  ),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: "Design Principle"),
-                    controller: _tab,
-                  ),
-                  SizedBox(
-                    height: 28,
-                  ),
-                  Text(
-                    "Complains",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-                  ),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText:
-                            "Write your complains here (minimum 10 characters)"),
-                    controller: _complains,
-                  ),
-                  SizedBox(
-                    height: 24,
                   ),
                   Center(
                     child: ElevatedButton(
@@ -180,15 +144,14 @@ class _FormsState extends State<Forms> {
                           padding: EdgeInsets.zero,
                           elevation: 4),
                       onPressed: () {
-                        provider.category(
-                            _category.text.trim(),
-                            _rating.text.trim(),
-                            _title.text.trim(),
-                            _classes.text.trim(),
-                            _durationHours.text.trim(),
-                            _price.text.trim(),
-                            _tab.text.trim(),
-                            _complains.text.trim());
+                        provider.addMentor(
+                          _nameController.text.trim(),
+                          _ageController.text.trim(),
+                          _emailController.text.trim(),
+                          _phoneController.text.trim(),
+                          _specialController.text.trim(),
+                          _bioController.text.trim(),
+                        );
                       },
                       child: InkWell(
                         onTap: () => Navigator.push(context,
@@ -217,8 +180,8 @@ class _FormsState extends State<Forms> {
                 ],
               ),
             ),
-          );
-        },
+          ),
+        ),
       ),
     );
   }

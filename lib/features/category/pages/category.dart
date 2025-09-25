@@ -12,10 +12,12 @@ class _CategoryState extends State<Category> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Row(
           children: [Icon(Icons.arrow_back), Text("All Category")],
         ),
       ),
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
@@ -23,27 +25,6 @@ class _CategoryState extends State<Category> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: 32,
-              ),
-              Row(
-                children: [
-                  Icon(
-                    Icons.arrow_back,
-                    size: 28,
-                  ),
-                  SizedBox(
-                    width: 8,
-                  ),
-                  Text(
-                    "All Category",
-                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 28,
-              ),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.zero,
