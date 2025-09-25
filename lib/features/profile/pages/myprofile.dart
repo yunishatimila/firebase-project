@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_3/features/category/pages/pages.dart';
 
 class Myprofile extends StatefulWidget {
   const Myprofile({super.key});
@@ -11,6 +12,7 @@ class _MyprofileState extends State<Myprofile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
@@ -118,19 +120,25 @@ class _MyprofileState extends State<Myprofile> {
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue[50]),
                     onPressed: () {},
-                    child: Container(
-                      height: 52,
-                      width: 100,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12)),
-                      child: Center(
-                          child: Text(
-                        "Add",
-                        style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black),
-                      )),
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => Pages()));
+                      },
+                      child: Container(
+                        height: 52,
+                        width: 100,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12)),
+                        child: Center(
+                            child: Text(
+                          "Add",
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black),
+                        )),
+                      ),
                     ),
                   ),
                   SizedBox(

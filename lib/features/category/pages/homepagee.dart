@@ -1,21 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_3/Notice.dart';
-import 'package:flutter_application_3/courses.dart';
 import 'package:flutter_application_3/features/category/pages/category.dart';
+import 'package:flutter_application_3/features/category/pages/course.dart';
+import 'package:flutter_application_3/features/category/pages/enroll.dart';
+import 'package:flutter_application_3/features/category/pages/mentors.dart';
+import 'package:flutter_application_3/features/category/provider/category_provider.dart';
+import 'package:flutter_application_3/features/profile/pages/Notice.dart';
+import 'package:provider/provider.dart';
 
-class Homepage extends StatefulWidget {
-  const Homepage({super.key});
+class Homepagee extends StatefulWidget {
+  const Homepagee({super.key});
 
   @override
-  State<Homepage> createState() => _HomepageState();
+  State<Homepagee> createState() => _HomepageeState();
 }
 
-class _HomepageState extends State<Homepage> {
+class _HomepageeState extends State<Homepagee> {
+  @override
+  void initState() {
+    Future.microtask(() {
+      fetchMentors();
+    });
+
+    super.initState();
+  }
+
+  void fetchMentors() {
+    context.read<CategoryProvider>().fetchMentors();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -53,16 +71,20 @@ class _HomepageState extends State<Homepage> {
                       ),
                     ],
                   ),
-                  Spacer(),
-                  Icon(
-                    Icons.circle_notifications_outlined,
-                    size: 44,
-                    color: Colors.green,
+                  SizedBox(
+                    width: 52,
                   ),
                   InkWell(
-                    onTap: () => Navigator.push(
-                        context, MaterialPageRoute(builder: (_) => Notice())),
-                  )
+                    onTap: () {
+                      Navigator.push(
+                          context, MaterialPageRoute(builder: (_) => Notice()));
+                    },
+                    child: Icon(
+                      Icons.circle_notifications_outlined,
+                      size: 44,
+                      color: Colors.green,
+                    ),
+                  ),
                 ],
               ),
               SizedBox(
@@ -184,21 +206,27 @@ class _HomepageState extends State<Homepage> {
                             fontSize: 20, fontWeight: FontWeight.w700),
                       ),
                       Spacer(),
-                      Text(
-                        "See All",
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.blue),
-                      ),
-                      Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        color: Colors.blue,
-                      ),
                       InkWell(
-                        onTap: () => Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => Category())),
-                      )
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (_) => Category()));
+                        },
+                        child: Row(
+                          children: [
+                            Text(
+                              "See All",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.blue),
+                            ),
+                            Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              color: Colors.blue,
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                   SizedBox(
@@ -246,21 +274,27 @@ class _HomepageState extends State<Homepage> {
                             fontSize: 20, fontWeight: FontWeight.w700),
                       ),
                       Spacer(),
-                      Text(
-                        "See All",
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.blue),
-                      ),
-                      Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        color: Colors.blue,
-                      ),
                       InkWell(
-                        onTap: () => Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => Courses())),
-                      )
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (_) => Course()));
+                        },
+                        child: Row(
+                          children: [
+                            Text(
+                              "See All",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.blue),
+                            ),
+                            Icon(
+                              Icons.arrow_forward_ios_rounded,
+                              color: Colors.blue,
+                            ),
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                   SizedBox(
@@ -363,6 +397,119 @@ class _HomepageState extends State<Homepage> {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => Enroll()));
+                      },
+                      child: Container(
+                        height: 240,
+                        width: 280,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: Colors.black),
+                        child: Stack(
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(16),
+                                    topRight: Radius.circular(16),
+                                  ),
+                                  child: Image.network(
+                                    "https://img.freepik.com/free-vector/grey-hexagons-black-background_78370-2098.jpg?semt=ais_incoming&w=740&q=80",
+                                    height: 134,
+                                    width: double.infinity,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                Container(
+                                  width: double.infinity,
+                                  padding: EdgeInsets.all(12),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(4),
+                                      bottomRight: Radius.circular(16),
+                                    ),
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "Graphic Design",
+                                            style:
+                                                TextStyle(color: Colors.orange),
+                                          ),
+                                          Spacer(),
+                                          Icon(
+                                            Icons.bookmark_remove_outlined,
+                                            color: Colors.green,
+                                          )
+                                        ],
+                                      ),
+                                      SizedBox(height: 4),
+                                      Text(
+                                        "Graphic Design Advanced",
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(height: 8),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "850/-",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                color: Colors.blue),
+                                          ),
+                                          SizedBox(width: 12),
+                                          Text(
+                                            "|",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          SizedBox(width: 16),
+                                          Icon(Icons.star,
+                                              color: Colors.amber, size: 16),
+                                          SizedBox(width: 4),
+                                          Text(
+                                            "4.2",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          SizedBox(width: 12),
+                                          Text(
+                                            "|",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                          SizedBox(width: 16),
+                                          Text(
+                                            "7830 Std",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20,
+                    ),
                     Container(
                       height: 240,
                       width: 280,
@@ -466,117 +613,76 @@ class _HomepageState extends State<Homepage> {
                         ],
                       ),
                     ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Container(
-                      height: 240,
-                      width: 280,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.black),
-                      child: Stack(
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              // 🔹 IMAGE (top)
-                              ClipRRect(
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(16),
-                                  topRight: Radius.circular(16),
-                                ),
-                                child: Image.network(
-                                  "https://img.freepik.com/free-vector/grey-hexagons-black-background_78370-2098.jpg?semt=ais_incoming&w=740&q=80",
-                                  height: 134,
-                                  width: double.infinity,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-
-                              // 🔹 WHITE BACKGROUND (bottom part)
-                              Container(
-                                width: double.infinity,
-                                padding: const EdgeInsets.all(12),
-                                decoration: const BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(4),
-                                    bottomRight: Radius.circular(16),
-                                  ),
-                                ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        const Text(
-                                          "Graphic Design",
-                                          style:
-                                              TextStyle(color: Colors.orange),
-                                        ),
-                                        Spacer(),
-                                        Icon(
-                                          Icons.bookmark_remove_outlined,
-                                          color: Colors.green,
-                                        )
-                                      ],
-                                    ),
-                                    const SizedBox(height: 4),
-                                    const Text(
-                                      "Graphic Design Advanced",
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    const SizedBox(height: 8),
-                                    Row(
-                                      children: const [
-                                        Text(
-                                          "850/-",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.blue),
-                                        ),
-                                        SizedBox(width: 12),
-                                        Text(
-                                          "|",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                        SizedBox(width: 16),
-                                        Icon(Icons.star,
-                                            color: Colors.amber, size: 16),
-                                        SizedBox(width: 4),
-                                        Text(
-                                          "4.2",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                        SizedBox(width: 12),
-                                        Text(
-                                          "|",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                        SizedBox(width: 16),
-                                        Text(
-                                          "7830 Std",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
                   ],
                 ),
+              ),
+              SizedBox(
+                height: 24,
+              ),
+              Row(
+                children: [
+                  Text(
+                    "Top Mentors",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                  ),
+                  Spacer(),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context, MaterialPageRoute(builder: (_) => Course()));
+                    },
+                    child: Row(
+                      children: [
+                        Text(
+                          "See All",
+                          style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.blue),
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios_rounded,
+                          color: Colors.blue,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Consumer<CategoryProvider>(
+                builder: (context, provider, child) {
+                  return Container(
+                    height: 120,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: provider.mentorsList.length,
+                      itemBuilder: (context, index) {
+                        final mentors = provider.mentorsList[index];
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              Container(
+                                height: 70,
+                                width: 80,
+                                decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    borderRadius: BorderRadius.circular(20)),
+                              ),
+                              SizedBox(
+                                height: 12,
+                              ),
+                              Text(mentors["name"]),
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                },
               )
             ],
           ),
@@ -585,4 +691,3 @@ class _HomepageState extends State<Homepage> {
     );
   }
 }
-//

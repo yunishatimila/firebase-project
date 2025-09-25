@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_3/features/auth/pages/signup.dart';
-import 'package:flutter_application_3/features/category/pages/homepage.dart';
 import 'package:flutter_application_3/features/auth/provider/auth_provider.dart';
+import 'package:flutter_application_3/features/category/pages/homepagee.dart';
 import 'package:flutter_application_3/features/core/utils.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +27,7 @@ class _LoginState extends State<Login> {
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text("Success")));
           Navigator.pushAndRemoveUntil(context,
-              MaterialPageRoute(builder: (_) => Homepage()), (route) => false);
+              MaterialPageRoute(builder: (_) => Homepagee()), (route) => false);
         }
         if (provider.statusUtils == StatusUtils.error) {
           ScaffoldMessenger.of(context)
@@ -41,18 +41,24 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: SingleChildScrollView(
-          child: Consumer<AuthProvider>(
-            builder: (context, provider, child) {
-              if (provider.statusUtils == StatusUtils.loading) {
-                return Center(
-                  child: LoadingAnimationWidget.dotsTriangle(
-                      color: Colors.black, size: 50),
-                );
-              }
+        child: Consumer<AuthProvider>(
+          builder: (context, provider, child) {
+            if (provider.statusUtils == StatusUtils.loading) {
               return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: LoadingAnimationWidget.dotsTriangle(
+                        color: Colors.black, size: 50),
+                  ),
+                ],
+              );
+            }
+            return SingleChildScrollView(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -249,9 +255,9 @@ class _LoginState extends State<Login> {
                     ],
                   ),
                 ],
-              );
-            },
-          ),
+              ),
+            );
+          },
         ),
       ),
     );
